@@ -2,6 +2,9 @@ import { AfterViewInit, Component, ViewChild, ViewContainerRef, viewChild } from
 import { RouterOutlet } from '@angular/router';
 import { RoomsComponent } from './rooms/rooms.component';
 import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { ContainerComponent } from './container/container.component';
+import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
+import { HeaderComponent } from './header/header.component';
 
 //  import { RoomsComponent } from './rooms';
 
@@ -9,7 +12,7 @@ import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RoomsComponent, NgSwitch, NgSwitchCase, NgSwitchDefault],
+  imports: [RouterOutlet, RoomsComponent, RoomsListComponent, HeaderComponent, ContainerComponent, NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
