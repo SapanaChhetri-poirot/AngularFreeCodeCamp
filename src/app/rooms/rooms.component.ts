@@ -1,5 +1,6 @@
-import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { Room, RoomsList } from './rooms';
+import { HeaderComponent } from '../header/header.component';
 import { CurrencyPipe, DatePipe, JsonPipe, LowerCasePipe, NgClass, NgFor, NgIf, NgStyle, UpperCasePipe } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { data } from 'browserslist';
@@ -8,19 +9,22 @@ import { data } from 'browserslist';
 @Component({
   selector: 'hotel-rooms',
   standalone: true,
-  imports: [NgIf, NgFor, NgClass, NgStyle, DatePipe, LowerCasePipe, UpperCasePipe, CurrencyPipe, RoomsListComponent, JsonPipe],
+  imports: [NgIf, NgFor, NgClass, NgStyle, DatePipe, LowerCasePipe, UpperCasePipe, CurrencyPipe, RoomsListComponent, HeaderComponent, JsonPipe],
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss'
 })
 
-export class RoomsComponent implements OnInit, DoCheck {
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit {
+  ngAfterViewInit(): void {
+    this.headerComponent.title = "title assigned";
+  }
   hotelName = "Hyatt";
 
   numberOfBranches = "2";
 
   hideBranches = false;
 
-selectedRoom! : RoomsList;
+  selectedRoom!: RoomsList;
 
   rooms: Room = {
     availableRooms: 1,
@@ -34,8 +38,11 @@ selectedRoom! : RoomsList;
 
   roomList: RoomsList[] = [];
 
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
   ngOnInit(): void {
+
+    console.log(this.headerComponent);
     this.roomList = [
       {
         roomNumber: 1,
@@ -81,15 +88,15 @@ selectedRoom! : RoomsList;
     console.log(room);
   }
 
-  addRoom(){
-    const room: RoomsList={
-      roomNumber : 4,
-       roomType:'Deluxe Room',
-       amenities:'Air cond',
-       price: 500,
-       checkinTime: new Date('11-Nov-2024'),
-       checkoutTime: new Date('13-Nov-2024'),
-       pictures:'pic'
+  addRoom() {
+    const room: RoomsList = {
+      roomNumber: 4,
+      roomType: 'Deluxe Room',
+      amenities: 'Air cond',
+      price: 500,
+      checkinTime: new Date('11-Nov-2024'),
+      checkoutTime: new Date('13-Nov-2024'),
+      pictures: 'pic'
     }
 
     //this.roomList.push(room);
