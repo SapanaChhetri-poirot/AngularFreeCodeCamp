@@ -1,0 +1,30 @@
+<h1>Wekcome to {{hotelName}}</h1>
+<p>rooms works!</p>
+<div [hidden]="hideBranches">
+    Number of branches of {{hotelName}}:
+    <div [ngStyle]="{ color:  rooms?.availableRooms ? 'blue' : 'red'}" [innerText]="numberOfBranches"></div>
+</div>
+
+{{brooms?.availableRooms ?? 'No rooms'}}
+{{rooms?.availableRooms ?? 'No rooms'}}
+
+<div *ngIf="selectedRoom">
+    {{selectedRoom | json}}
+</div>
+
+<div>
+    <button (click)="addRoom()">Add room</button>
+</div>
+
+<!-- ngif is better than hidden attribute-->
+<div *ngIf="rooms?.availableRooms">
+    <app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectsRoom($event)"></app-rooms-list>
+</div>
+
+<div *ngIf="brooms?.availableRooms">
+    BRooms List:
+</div>
+
+<h1>Pipes use</h1>
+
+<button (click)="toggle()">Toggle</button>
