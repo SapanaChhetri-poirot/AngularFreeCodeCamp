@@ -5,6 +5,7 @@ import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { ContainerComponent } from './container/container.component';
 import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { HeaderComponent } from './header/header.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 //  import { RoomsComponent } from './rooms';
 
@@ -12,7 +13,7 @@ import { HeaderComponent } from './header/header.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RoomsComponent, RoomsListComponent, HeaderComponent, ContainerComponent, NgSwitch, NgSwitchCase, NgSwitchDefault],
+  imports: [RouterOutlet, EmployeeComponent, RoomsComponent, RoomsListComponent, HeaderComponent, ContainerComponent, NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
