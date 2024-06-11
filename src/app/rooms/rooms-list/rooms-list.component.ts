@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe, LowerCasePipe, NgClass, NgFor, NgIf, UpperCasePipe } from '@angular/common';
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges, SimpleChanges, input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges, SimpleChanges, input, OnDestroy } from '@angular/core';
 import { RoomsList, Room } from '../rooms';
 
 @Component({
@@ -10,8 +10,11 @@ import { RoomsList, Room } from '../rooms';
   styleUrl: './rooms-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RoomsListComponent implements OnChanges {
+export class RoomsListComponent implements OnChanges, OnDestroy {
 
+  ngOnDestroy(): void {
+    console.log('on destroy is called');
+  }
 ngOnChanges(changes: SimpleChanges): void {
   console.log(changes);
   if(changes['title']){

@@ -21,7 +21,7 @@
 </div>
 
 <!-- ngif is better than hidden attribute-->
-<div *ngIf="rooms?.availableRooms">
+<div *ngIf="hideBranches">
     <app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectsRoom($event)"></app-rooms-list>
 </div>
 
@@ -31,4 +31,4 @@
 
 <h1>Pipes use</h1>
 
-<button (click)="toggle()">Toggle</button>
+<button (click)="toggle()">Toggle</button> Use this to hide the rooms list

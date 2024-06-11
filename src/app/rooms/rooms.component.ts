@@ -1,9 +1,11 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Room, RoomsList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { CurrencyPipe, DatePipe, JsonPipe, LowerCasePipe, NgClass, NgFor, NgIf, NgStyle, UpperCasePipe } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { data } from 'browserslist';
+import { RoomsService } from './service/rooms.service';
+import { ThisReceiver } from '@angular/compiler';
 
 
 @Component({
@@ -15,6 +17,9 @@ import { data } from 'browserslist';
 })
 
 export class RoomsComponent implements OnInit, DoCheck, AfterViewInit {
+// limiting service with priVATE TO TS FILE ONLY 
+constructor(private roomsService : RoomsService){}
+
   ngAfterViewInit(): void {
     this.headerComponent.title = "title assigned";
   }
@@ -22,7 +27,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit {
 
   numberOfBranches = "2";
 
-  hideBranches = false;
+  hideBranches = true;
 
   selectedRoom!: RoomsList;
 
@@ -42,36 +47,10 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit {
 
   ngOnInit(): void {
 
-    console.log(this.headerComponent);
-    this.roomList = [
-      {
-        roomNumber: 1,
-        roomType: 'Deluxe Room',
-        amenities: 'Air Conditioner, Mattress',
-        price: 500,
-        pictures: 'https://images.unsplash.com/photo-1518791841217-8f162f1e11312',
-        checkinTime: new Date('11-Nov-2021'),
-        checkoutTime: new Date('12-Nov-2021'),
-      },
-      {
-        roomNumber: 2,
-        roomType: 'Deluxe Room',
-        amenities: 'Air Conditioner, Mattress',
-        price: 2500,
-        pictures: 'https://images.unsplash.com/photo-1518791841217-8f162f1e11312',
-        checkinTime: new Date('21-Nov-2021'),
-        checkoutTime: new Date('22-Nov-2021'),
-      },
-      {
-        roomNumber: 3,
-        roomType: 'Private Suite',
-        amenities: 'Air Conditioner, Mattress',
-        price: 1500,
-        pictures: 'https://images.unsplash.com/photo-1518791841217-8f162f1e11312',
-        checkinTime: new Date('16-Nov-2021'),
-        checkoutTime: new Date('17-Nov-2021'),
-      },
-    ];
+    //console.log(this.headerComponent);
+    
+    this.roomList = this.roomsService.getRooms();
+
   }
 
   ngDoCheck(): void {
