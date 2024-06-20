@@ -49,7 +49,10 @@ constructor(private roomsService : RoomsService){}
 
     //console.log(this.headerComponent);
     
-    this.roomList = this.roomsService.getRooms();
+    // fetch data and subscribe to it
+    this.roomsService.getRooms().subscribe(rooms => {
+      this.roomList = rooms;
+    });
 
   }
 
@@ -69,7 +72,7 @@ constructor(private roomsService : RoomsService){}
 
   addRoom() {
     const room: RoomsList = {
-      roomNumber: 4,
+      roomNumber: '4',
       roomType: 'Deluxe Room',
       amenities: 'Air cond',
       price: 500,
