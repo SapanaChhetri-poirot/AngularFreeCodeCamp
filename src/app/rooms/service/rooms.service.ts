@@ -40,8 +40,9 @@ export class RoomsService {
   ];
 
   constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig) {
-
+    // use of injection DI (value provider)
     console.log("b " + this.config.appEndpoint);
+
     console.log("a " + environment.apiEndpoint);
    }
 
