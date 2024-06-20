@@ -6,6 +6,7 @@ import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { data } from 'browserslist';
 import { RoomsService } from './service/rooms.service';
 import { ThisReceiver } from '@angular/compiler';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -43,6 +44,13 @@ constructor(private roomsService : RoomsService){}
 
   roomList: RoomsList[] = [];
 
+  stream = new Observable(observer => {
+    observer.next('user1') // next will be emitting new data, subscriber will get this data
+    observer.next('user2')
+    observer.next('user3')
+    observer.complete()
+  });
+
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
   ngOnInit(): void {
@@ -53,6 +61,8 @@ constructor(private roomsService : RoomsService){}
     this.roomsService.getRooms().subscribe(rooms => {
       this.roomList = rooms;
     });
+
+    this.stream.subscribe((data) => console.log(data));
 
   }
 
