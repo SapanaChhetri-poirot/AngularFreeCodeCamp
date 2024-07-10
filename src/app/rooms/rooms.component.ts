@@ -98,4 +98,26 @@ constructor(private roomsService : RoomsService){}
         this.roomList = data;
     })
   }
+
+  editRoom(){
+    const room: RoomsList = {
+      roomNumber: '3',
+      roomType: 'Deluxe Room',
+      amenities: 'Air cond',
+      price: 500,
+      checkinTime: new Date('11-Nov-2024'),
+      checkoutTime: new Date('13-Nov-2024'),
+      pictures: 'pic'
+    };
+
+    this.roomsService.editRoom(room).subscribe((data) =>{
+      this.roomList = data;
+    })
+  }
+
+  deleteRoom(){
+    this.roomsService.deleteRoom('3').subscribe((data) =>{
+      this.roomList = data;
+    })
+  }
 }
