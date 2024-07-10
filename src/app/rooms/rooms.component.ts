@@ -7,6 +7,7 @@ import { data } from 'browserslist';
 import { RoomsService } from './service/rooms.service';
 import { ThisReceiver } from '@angular/compiler';
 import { Observable } from 'rxjs';
+import { HttpEventType } from '@angular/common/http';
 
 
 @Component({
@@ -54,6 +55,37 @@ constructor(private roomsService : RoomsService){}
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
   ngOnInit(): void {
+
+    // HTTP request
+    this.roomsService.getPhotos().subscribe((events)=>{
+      console.log(data);
+
+      switch (events.type)
+      {
+          case HttpEventType.Sent: {
+            console.log('Request has been made');
+            break;
+          }
+
+          case HttpEventType.ResponseHeader: {
+            console.log('Request success.');
+            break;
+          }
+
+          case HttpEventType.DownloadProgress: {
+             console.log("Total bytes downloaded: " + events.loaded);
+             break;
+          }
+
+          case HttpEventType.Response: {
+            console.log(events.body);
+            break;
+          }
+
+          default:
+          break;
+      };
+    });
 
     //console.log(this.headerComponent);
     
