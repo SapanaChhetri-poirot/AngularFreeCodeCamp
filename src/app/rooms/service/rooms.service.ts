@@ -54,4 +54,9 @@ export class RoomsService {
   getRooms() {
     return this.http.get<RoomsList[]>('/api/rooms');
   }
+
+  // Post
+  addRoom(room: RoomsList){
+    return this.http.post<RoomsList[]>('/api/rooms', room);
+  }
 }

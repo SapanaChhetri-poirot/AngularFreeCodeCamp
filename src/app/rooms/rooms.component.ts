@@ -82,7 +82,7 @@ constructor(private roomsService : RoomsService){}
 
   addRoom() {
     const room: RoomsList = {
-      roomNumber: '4',
+      //roomNumber: '4',
       roomType: 'Deluxe Room',
       amenities: 'Air cond',
       price: 500,
@@ -92,6 +92,10 @@ constructor(private roomsService : RoomsService){}
     }
 
     //this.roomList.push(room);
-    this.roomList = [...this.roomList, room];
+    //this.roomList = [...this.roomList, room];
+
+    this.roomsService.addRoom(room).subscribe((data) =>{
+        this.roomList = data;
+    })
   }
 }
