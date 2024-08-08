@@ -90,7 +90,7 @@ constructor(private roomsService : RoomsService){}
     //console.log(this.headerComponent);
     
     // fetch data and subscribe to it
-    this.roomsService.getRooms().subscribe(rooms => {
+    this.roomsService.getRooms$.subscribe(rooms => {
       this.roomList = rooms;
     });
 

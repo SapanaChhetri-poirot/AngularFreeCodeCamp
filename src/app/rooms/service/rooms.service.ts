@@ -3,7 +3,8 @@ import { RoomsList } from '../rooms';
 import { environment } from '../../../environments/environment';
 import { APP_SERVICE_CONFIG } from '../../AppConfig/appconfig.service';
 import { AppConfig } from '../../AppConfig/appconfig.interface';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,12 @@ export class RoomsService {
     //   checkoutTime: new Date('17-Nov-2021'),
     // },
   ];
+  headers = new HttpHeaders({ 'token': '12345f'});
+  getRooms$ = this.http.get<RoomsList[]>('/api/rooms', {
+    headers : this.headers,
+  }).pipe(
+    shareReplay(1)
+  );
 
   constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig, private http: HttpClient) {
     // use of injection DI (value provider)
@@ -51,8 +58,12 @@ export class RoomsService {
     // get call
    }
 
-  getRooms() {
-    return this.http.get<RoomsList[]>('/api/rooms');
+  getRooms() {    
+    // Cretae http header
+    const headers = new HttpHeaders({ 'token': '12345f'});
+    return this.http.get<RoomsList[]>('/api/rooms', {
+      headers: headers
+    });
   }
 
   // Post
