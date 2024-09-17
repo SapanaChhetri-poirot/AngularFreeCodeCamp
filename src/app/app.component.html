@@ -2,16 +2,16 @@
 
 <!-- <hotel-rooms></hotel-rooms> -->
 
-<app-container>
+<!-- <app-container>
     <app-header></app-header>
     <hotel-rooms>
     
     </hotel-rooms>
     <app-employee></app-employee>
-    <h1>This is container content using NgContent</h1>
+    <h1>This is container content using NgContent</h1>-->
     
     <!--You can only enter html tags inside a component because the compoonent has used ng-content inside its html-->
-</app-container>
+ <!--</app-container> -->
 
 <!-- <hotel-rooms></hotel-rooms> -->
 <!-- 
@@ -30,3 +30,13 @@ You are not authorized to view this page!
 <!-- <div>
     <ng-template #user></ng-template>
 </div> -->
+
+<!-- href link (not recommended) entire page loads, MPA multiple page application, not a spa-->
+<!-- <a [href]="'rooms'"> Rooms</a>
+<a [href]="'employee'"> Employee</a> -->
+
+<a [routerLink]="'rooms'"> Rooms</a>
+<a [routerLink]="'employee'"> Employee</a>
+
+<!--Routing-->
+<router-outlet></router-outlet>

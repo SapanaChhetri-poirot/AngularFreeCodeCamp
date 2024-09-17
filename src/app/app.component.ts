@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ViewChild, ViewContainerRef, Inject, viewChild, Injectable, OnInit, afterNextRender } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { RoomsComponent } from './rooms/rooms.component';
 import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { ContainerComponent } from './container/container.component';
@@ -13,7 +13,7 @@ import {LocalStorageToken} from './localstorage.token';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, EmployeeComponent, RoomsComponent, RoomsListComponent, HeaderComponent, ContainerComponent, NgSwitch, NgSwitchCase, NgSwitchDefault],
+  imports: [RouterModule, RouterOutlet, EmployeeComponent, RoomsComponent, RoomsListComponent, HeaderComponent, ContainerComponent, NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
