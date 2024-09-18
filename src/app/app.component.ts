@@ -7,13 +7,14 @@ import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { HeaderComponent } from './header/header.component';
 import { EmployeeComponent } from './employee/employee.component';
 import {LocalStorageToken} from './localstorage.token';
+import { AppNavComponent } from "./app-nav/app-nav.component";
 //  import { RoomsComponent } from './rooms';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, RouterOutlet, EmployeeComponent, RoomsComponent, RoomsListComponent, HeaderComponent, ContainerComponent, NgSwitch, NgSwitchCase, NgSwitchDefault],
+  imports: [RouterModule, RouterOutlet, EmployeeComponent, RoomsComponent, RoomsListComponent, HeaderComponent, ContainerComponent, NgSwitch, NgSwitchCase, NgSwitchDefault, AppNavComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
