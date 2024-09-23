@@ -1,11 +1,13 @@
 import { CurrencyPipe, DatePipe, LowerCasePipe, NgClass, NgFor, NgIf, UpperCasePipe } from '@angular/common';
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges, SimpleChanges, input, OnDestroy } from '@angular/core';
 import { RoomsList, Room } from '../rooms';
+import { RouterModule, RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-rooms-list',
   standalone: true,
-  imports: [NgIf, NgFor, NgClass, UpperCasePipe, CurrencyPipe, LowerCasePipe, DatePipe],
+  imports: [RouterModule, RouterOutlet ,NgIf, NgFor, NgClass, UpperCasePipe, CurrencyPipe, LowerCasePipe, DatePipe],
   templateUrl: './rooms-list.component.html',
   styleUrl: './rooms-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
