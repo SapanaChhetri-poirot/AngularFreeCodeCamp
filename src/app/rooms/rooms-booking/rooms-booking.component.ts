@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rooms-booking',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './rooms-booking.component.html',
   styleUrl: './rooms-booking.component.scss'
 }) 
@@ -22,7 +22,7 @@ export class RoomsBookingComponent implements OnInit {
   ngOnInit(): void {
 
     this.roomId$ = this.router.params.pipe(
-      map(params => params['roomId'])
+      map(params => params['id'])
     );
     // snapshot will never receive a value if it is already in a value
     //this.roomId = this.router.snapshot.params['id'];
