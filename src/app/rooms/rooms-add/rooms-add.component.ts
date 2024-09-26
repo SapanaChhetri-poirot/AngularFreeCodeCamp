@@ -1,4 +1,4 @@
-import { Component,  } from '@angular/core';
+import { Component, } from '@angular/core';
 import { RoomsList } from '../rooms';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -12,7 +12,7 @@ import { RoomsService } from '../service/rooms.service';
   styleUrl: './rooms-add.component.scss'
 })
 export class RoomsAddComponent {
-  room : RoomsList = {
+  room: RoomsList = {
     roomType: '',
     amenities: '',
     checkinTime: new Date(),
@@ -20,15 +20,15 @@ export class RoomsAddComponent {
     pictures: '',
     price: 0
   }
-successMessage : string = "";
-  constructor(private roomsService: RoomsService){
+  successMessage: string = "";
+  constructor(private roomsService: RoomsService) {
 
   }
 
-  AddRoom(){
-    this.roomsService.addRoom(this.room). subscribe((data) => {
-    
-    this.successMessage = 'Successful';
-  });
+  AddRoom() {
+    this.roomsService.addRoom(this.room).subscribe((data) => {
+
+      this.successMessage = 'Successful';
+    });
   }
 }

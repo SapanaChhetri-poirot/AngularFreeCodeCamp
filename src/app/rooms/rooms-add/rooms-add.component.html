@@ -1,30 +1,38 @@
 <!--Html form will be used for Template driven form-->
-{{room|json}}
+{{ roomsForm.value|json}}
 
-<div class="alert alert-success">
+<div *ngIf="successMessage != ''" class="alert alert-success">
     {{successMessage}}
 </div>
-<form (ngSubmit)="AddRoom()">
+<form #roomsForm="ngForm" (ngSubmit)="AddRoom()">
     <div class="form-group">
-        <input class="form-control" [(ngModel)]="room.roomNumber" type="text" name="roomType" placeholder="Room Type" />
+        <input required class="form-control" [(ngModel)]="room.roomNumber" type="text" name="roomType" placeholder="Room Type" />
     </div>
     <div class="form-group">
-        <input class="form-control" [(ngModel)]="room.amenities" type="text" name="amenities" placeholder="Amenities" />
+        <input #roomamenities="ngModel"  minlength="5" maxlength="20" required class="form-control" [(ngModel)]="room.amenities" type="text" name="amenities" placeholder="Amenities" />
+        <div>
+            {{roomamenities.errors | json}}
+        </div>
+        <!--
+        Display errors on control level-->
+        <div class="alert alert-danger" *ngIf="roomamenities.errors?.['minlength']">
+            Amenities should be minimum 5 chars.
+        </div>
     </div>
     <div class="form-group">
-        <input class="form-control" [(ngModel)]="room.price" type="text" name="price" placeholder="Price" />
+        <input required class="form-control" [(ngModel)]="room.price" type="text" name="price" placeholder="Price" />
     </div>
     <div class="form-group">
-        <input class="form-control" [(ngModel)]="room.checkinTime" type="datetime" name="checkinTime" placeholder="Checkin Time" />
+        <input required class="form-control" [(ngModel)]="room.checkinTime" type="datetime" name="checkinTime" placeholder="Checkin Time" />
     </div>
     <div class="form-group">
-        <input class="form-control" [(ngModel)]="room.checkoutTime" type="datetime" name="checkoutTime" placeholder="Checkout Time" />
+        <input required class="form-control" [(ngModel)]="room.checkoutTime" type="datetime" name="checkoutTime" placeholder="Checkout Time" />
     </div>
     <div class="form-group">
-        <input class="form-control" type="text" [(ngModel)]="room.pictures" name="pictures" placeholder="Pictures" />
+        <input required class="form-control" type="text" [(ngModel)]="room.pictures" name="pictures" placeholder="Pictures" />
     </div>
     <div>
-        <button class="btn btn-primary" type="submit">
+        <button [disabled]="roomsForm.invalid" class="btn btn-primary" type="submit">
             Submit
         </button>
     </div>
