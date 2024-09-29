@@ -4,7 +4,7 @@
 <div *ngIf="successMessage != ''" class="alert alert-success">
     {{successMessage}}
 </div>
-<form #roomsForm="ngForm" (ngSubmit)="AddRoom()">
+<form #roomsForm="ngForm" (ngSubmit)="AddRoom(roomsForm)">
     <div class="form-group">
         <input required class="form-control" [(ngModel)]="room.roomNumber" type="text" name="roomType" placeholder="Room Type" />
     </div>
@@ -17,6 +17,10 @@
         Display errors on control level-->
         <div class="alert alert-danger" *ngIf="roomamenities.errors?.['minlength']">
             Amenities should be minimum 5 chars.
+        </div>
+
+        <div *ngIf="roomamenities.dirty && roomamenities.errors?.['required']">
+            Please provide the amneties.
         </div>
     </div>
     <div class="form-group">

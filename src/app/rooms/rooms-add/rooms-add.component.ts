@@ -1,7 +1,7 @@
 import { Component, } from '@angular/core';
 import { RoomsList } from '../rooms';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
+import { CommonModule, NgFor } from '@angular/common';
 import { RoomsService } from '../service/rooms.service';
 
 @Component({
@@ -25,10 +25,12 @@ export class RoomsAddComponent {
 
   }
 
-  AddRoom() {
+  AddRoom(roomsForm: NgForm) {
     this.roomsService.addRoom(this.room).subscribe((data) => {
 
       this.successMessage = 'Successful';
+
+      roomsForm.reset();
     });
   }
 }
