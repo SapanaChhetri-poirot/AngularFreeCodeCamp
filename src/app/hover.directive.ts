@@ -1,4 +1,5 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Directive, ElementRef, Host, HostListener, Inject, Input, input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appHover]',
@@ -6,13 +7,29 @@ import { Directive, ElementRef, OnInit } from '@angular/core';
 })
 export class HoverDirective implements OnInit{
 
-  color: string = 'red';
+  @Input() color: string = 'red';
 
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, private renderer: Renderer2) {
     console.log(this.element.nativeElement);
    }
 
   ngOnInit(): void {
-    this.element.nativeElement.style.backgroundColor = this.color;
+    //this.element.nativeElement.style.backgroundColor = this.color;
+    this.renderer.setStyle(
+      this.element.nativeElement,
+      'backgroundColor',
+      this.color
+    );
+
+    // HostListener
+
+    // @HostListener('mouseenter') onMouseEnter() {
+    //   this.renderer.setStyle(
+    //     this.element.nativeElement,
+    //     'backgroundColor',
+    //     'green'
+    //   );
+    // }
+
   }
 }
